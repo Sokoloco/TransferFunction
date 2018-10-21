@@ -22,7 +22,7 @@ function varargout = Text_Insert(varargin)
 
 % Edit the above text to modify the response to help Text_Insert
 
-% Last Modified by GUIDE v2.5 04-Oct-2018 20:15:22
+% Last Modified by GUIDE v2.5 20-Oct-2018 23:59:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -104,8 +104,8 @@ function bodeButton_Callback(hObject, eventdata, handles)
 
 s = tf('s');
 str =  strcat('@(s)',get(handles.Bode_Formula,"string"));
-fprintf('%s\n',str);
+%fprintf('%s\n',str);
 G = str2func(str);
 bode(G(s));
-%G = str2func(str);
-% G(2);
+fb = bandwidth(G(s));
+set(handles.BandW,'string', num2str(fb));
